@@ -77,7 +77,7 @@ function Maze(config) {
         // 设置迷宫墙的颜色
         this.ctx.fillStyle = this.config.wallColor;
         // 绘制迷宫底图
-        this.ctx.fillRect(0, 0, canvas.height, canvas.width);
+        // this.ctx.fillRect(0, 0, canvas.height, canvas.width);
         // 设置行进路径颜色
         this.ctx.fillStyle = this.config.roadColor;
         // 绘制墙

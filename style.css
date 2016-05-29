@@ -4,10 +4,31 @@
 
 html,
 body {
+  overflow: hidden;
   height: 100%;
   width: 100%; }
 
-#layer {
+canvas {
+  display: block; }
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; }
+
+.maze {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100px;
+  z-index: 100;
+  width: 80%;
+  height: 70%;
+  padding: 0;
+  margin: 0 auto; }
+
+.layer {
   display: none;
   height: 4%;
   width: 2%; }
