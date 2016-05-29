@@ -73,21 +73,21 @@ function Maze(config) {
         // 设置画布宽度
         canvas.width = this.config.canvasWidth;
         // 获取画布上下文对象
-        ctx = canvas.getContext('2d');
+        this.ctx = canvas.getContext('2d');
         // 设置迷宫墙的颜色
-        ctx.fillStyle = this.config.wallColor;
+        this.ctx.fillStyle = this.config.wallColor;
         // 绘制迷宫底图
-        ctx.fillRect(0, 0, canvas.height, canvas.width);
+        this.ctx.fillRect(0, 0, canvas.height, canvas.width);
         // 设置行进路径颜色
-        ctx.fillStyle = this.config.roadColor;
+        this.ctx.fillStyle = this.config.roadColor;
         // 绘制墙
         for (var j = 0; j < this.wall.length; j++) {
-            ctx.fillRect(this.wall[j][0] * 20, this.wall[j][1] * 20, 10, 10)
+            this.ctx.fillRect(this.wall[j][0] * this.config.gird, this.wall[j][1] * this.config.gird, this.config.road, this.config.road)
         }
         // 绘制路径
         for (var j = 0; j < this.path.length; j++) {
-            ctx.fillRect(this.path[j][0] * 20, this.path[j][1] * 20, 10, 10)
+            this.ctx.fillRect(this.path[j][0] * this.config.gird, this.path[j][1] * this.config.gird, this.config.road, this.config.road)
         }
-        ctx.stroke();
+        this.ctx.stroke();
     };
 }

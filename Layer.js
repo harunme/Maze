@@ -1,59 +1,15 @@
-var isMouseDown = false,
-    startX = startY = 0,
-    WIDTH, HEIGHT, DATA;
-window.onload = function() {
-    var img = new Image();
-    img.src = './maze.png';
-    img.onload = function(argument) {
-        // WIDTH = img.width;
-        // HEIGHT = img.height;
-        WIDTH = window.innerWidth;
-        HEIGHT = window.innerHeight;
-        ctx = initMaze(img);
-        var layer = new Layer();
-        layer.initLayer(ctx);
-        document.onkeydown = function(e) {
-            if (e.which === 38) {
-                layer.moveUp();
-                return;
-            }
-            if (e.which === 40) {
-                layer.moveDown();
-                return;
-            }
-            if (e.which === 37) {
-                layer.moveLeft();
-                return;
-            }
-            if (e.which === 39) {
-                layer.moveRight();
-                return;
-            }
-        }
-    }
-};
-
-function initMaze(img) {
-    var canvas = document.getElementById('baseboard');
-    baseCtx = canvas.getContext('2d');
-    canvas.width = WIDTH;
-    canvas.height = HEIGHT;
-    baseCtx.drawImage(img, 0, 0);
-    return baseCtx;
-}
-
-function Layer() {
+function Layer(id) {
     this.coordinates = {
         x: 0,
         y: 0
     };
-    this.img = document.getElementById('face');
+    this.img = document.getElementById(id);
     this.initLayer = function(ctx) {
         this.ctx = ctx;
-        var face = document.getElementById('face');
-        ctx.drawImage(face, this.coordinates.x, this.coordinates.y);
+        ctx.drawImage(this.img, this.coordinates.x, this.coordinates.y);
     };
     this.moveUp = function() {
+        console.log('up')
         if (!isCollsion(this.ctx, this.img, this.coordinates.x, this.coordinates.y - 1)) {
             this.clear();
             --this.coordinates.y;
@@ -61,6 +17,7 @@ function Layer() {
         }
     };
     this.moveDown = function() {
+        console.log('moveDown')
         if (!isCollsion(this.ctx, this.img, this.coordinates.x, this.coordinates.y + 1)) {
             this.clear();
             ++this.coordinates.y;
@@ -68,6 +25,7 @@ function Layer() {
         }
     };
     this.moveLeft = function() {
+        console.log('moveLeft')
         if (!isCollsion(this.ctx, this.img, this.coordinates.x - 1, this.coordinates.y)) {
             this.clear();
             --this.coordinates.x;
@@ -75,6 +33,8 @@ function Layer() {
         }
     };
     this.moveRight = function() {
+        console.log('moveRight')
+
         if (!isCollsion(this.ctx, this.img, this.coordinates.x + 1, this.coordinates.y)) {
             this.clear();
             ++this.coordinates.x;
@@ -83,10 +43,10 @@ function Layer() {
     };
     this.move = function(u, r, d, l) {
         console.log(isCollsion(this.ctx, this.img, this.coordinates.x, this.coordinates.y))
-        ctx.drawImage(this.img, this.coordinates.x, this.coordinates.y);
+        this.ctx.drawImage(this.img, this.coordinates.x, this.coordinates.y);
     };
     this.clear = function() {
-        ctx.clearRect(this.coordinates.x, this.coordinates.y, this.img.width, this.img.height);
+        this.ctx.clearRect(this.coordinates.x, this.coordinates.y, this.img.width, this.img.height);
     };
 }
 

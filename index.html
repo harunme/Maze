@@ -10,33 +10,12 @@
 </head>
 
 <body>
-    <canvas id="baseboard">
+    <canvas id="maze">
     </canvas>
-    <canvas style="border:1px solid;position:absolute;top:1000px;" id="test">
-    </canvas>
-    <img id="face" src="./layer.png">
+    <img id="layer" src="./MageFemale1.png">
 </body>
-<script src="./application.js" type="text/javascript" charset="utf-8"></script>
-<!-- <script src="./test.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="./Layer.js" type="text/javascript" charset="utf-8"></script>
 <script src="./Maze.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript">
-var maze = new Maze({
-    // canvas画布id
-    "mazeId": "test",
-    // canvas画布高度
-    "canvasHeight": 800,
-    // canvas画布宽度
-    "canvasWidth": 800,
-    // 迷宫宽度
-    "mazeWidth": 10,
-    // 迷宫高度
-    "mazeHeight": 10,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-});
-maze.init();
-</script>
+<script src="./app.js" type="text/javascript" charset="utf-8"></script>
 
 </html>

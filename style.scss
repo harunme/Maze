@@ -3,23 +3,29 @@
     padding: 0;
 }
 
-#baseboard {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    margin: 0 auto;
+html,
+body {
+    height: 100%;
+    width: 100%;
 }
 
+// #baseboard {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     display: block;
+//     margin: 0 auto;
+// }
+// #layer {
+//     z-index: 100;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     display: block;
+//     margin: 0 auto;
+// }
 #layer {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    margin: 0 auto;
-}
-
-#face {
     display: none;
+    height: 4%;
+    width: 2%;
 }
