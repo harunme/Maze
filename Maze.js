@@ -82,11 +82,11 @@ function Maze(config) {
         this.ctx.fillStyle = this.config.roadColor;
         // 绘制墙
         for (var j = 0; j < this.wall.length; j++) {
-            this.ctx.fillRect(this.wall[j][0] * this.config.gird, this.wall[j][1] * this.config.gird, this.config.road, this.config.road)
+            this.ctx.fillRect(this.wall[j][0] * this.config.grid, this.wall[j][1] * this.config.grid, this.config.road, this.config.road)
         }
         // 绘制路径
         for (var j = 0; j < this.path.length; j++) {
-            this.ctx.fillRect(this.path[j][0] * this.config.gird, this.path[j][1] * this.config.gird, this.config.road, this.config.road)
+            this.ctx.fillRect(this.path[j][0] * this.config.grid, this.path[j][1] * this.config.grid, this.config.road, this.config.road)
         }
         this.ctx.stroke();
     };
