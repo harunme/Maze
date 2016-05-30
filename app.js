@@ -2,7 +2,8 @@ document.body.onload = game;
 
 function game() {
     console.log('游戏开始...');
-    loadResources();
+    var gameObj = loadResources();
+    eventListener(gameObj);
 }
 
 function loadResources() {
@@ -29,7 +30,11 @@ function loadResources() {
         "roadColor": "white"
     };
     var maze = loadMaze(mazeSetting);
-    loadLayer(maze);
+    return {
+        "maze": maze,
+        "layer": loadLayer(maze),
+        "endPoint": generateEndPoint(maze)
+    }
 }
 
 function loadBg() {
@@ -38,7 +43,7 @@ function loadBg() {
     bgCanvas.height = document.body.clientHeight; //document.height is obsolete
     bgCtx = bgCanvas.getContext('2d');
     var bgImg = new Image();
-    bgImg.src = "./src/bbg_desert_1.jpg";
+    bgImg.src = "./src/bbg_garden_3.jpg";
     bgImg.onload = function() {
         bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
         console.log("背景资源加载结束...")
@@ -54,31 +59,59 @@ function loadMaze(setting) {
 function loadLayer(maze) {
     var layer = new Layer('layerImg');
     layer.initLayer(maze);
-    var interval = [];
+    return layer;
+}
+
+function generateEndPoint(maze) {
+    var endPoint = new EndPoint('endPoint');
+    endPoint.initLayer(maze);
+    return endPoint;
+}
+
+function eventListener(obj) {
+    var interval;
     document.onkeydown = function(e) {
-        for (v in interval) {
-            window.clearInterval(interval[v])
-        }
+        window.clearInterval(interval)
         if (e.which === 38) {
-            interval.push(window.setInterval(function() {
-                layer.moveUp();
-            }, 15))
+            interval = window.setInterval(function() {
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
+                    alert('到达终点')
+                    window.clearInterval(interval)
+                };
+                obj.layer.moveUp();
+            }, 10)
         }
         if (e.which === 40) {
-            interval.push(window.setInterval(function() {
-                layer.moveDown();
-            }, 15))
+            interval = window.setInterval(function() {
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
+                    alert('到达终点')
+                    window.clearInterval(interval)
+                };
+                obj.layer.moveDown();
+            }, 10)
         }
         if (e.which === 37) {
-            interval.push(window.setInterval(function() {
-                layer.moveLeft();
-            }, 15))
+            interval = window.setInterval(function() {
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
+                    alert('到达终点')
+                    window.clearInterval(interval)
+                };
+                obj.layer.moveLeft();
+            }, 10)
         }
         if (e.which === 39) {
-            interval.push(window.setInterval(function() {
-                layer.moveRight();
-            }, 15))
+            interval = window.setInterval(function() {
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
+                    alert('到达终点')
+                    window.clearInterval(interval)
+                };
+                obj.layer.moveRight();
+            }, 10)
 
         }
     }
+}
+
+function collisionDetection(xy, ab) {
+    return xy.x == ab.x && xy.y == ab.y;
 }
