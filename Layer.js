@@ -16,6 +16,8 @@ function Layer(id) {
         this.img.style.backgroundSize = "70px 70px";
         this.img.style.left = this.coordinates.x + 'px';
         this.img.style.top = this.coordinates.y + 'px';
+
+
         console.log(this.img)
         this.ctx = maze.ctx;
     };

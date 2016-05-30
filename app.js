@@ -17,9 +17,9 @@ function loadResources() {
         // canvas画布宽度
         "canvasWidth": 1240,
         // 迷宫宽度
-        "mazeWidth": 41,
+        "mazeWidth": 31,
         // 迷宫高度
-        "mazeHeight": 18,
+        "mazeHeight": 20,
         // 路与墙的总宽度
         "grid": 30,
         // 路的宽度
@@ -77,6 +77,10 @@ function eventListener(obj) {
                 if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
                     alert('到达终点')
                     window.clearInterval(interval)
+                    obj.maze.init();
+                    obj.layer.initLayer(obj.maze);
+                    obj.endPoint.initLayer(obj.maze);
+                    return;
                 };
                 obj.layer.moveUp();
             }, 10)
@@ -85,7 +89,11 @@ function eventListener(obj) {
             interval = window.setInterval(function() {
                 if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
                     alert('到达终点')
-                    window.clearInterval(interval)
+                    window.clearInterval(interval);
+                    obj.maze.init();
+                    obj.layer.initLayer(obj.maze);
+                    obj.endPoint.initLayer(obj.maze);
+                    return;
                 };
                 obj.layer.moveDown();
             }, 10)
@@ -94,7 +102,11 @@ function eventListener(obj) {
             interval = window.setInterval(function() {
                 if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
                     alert('到达终点')
-                    window.clearInterval(interval)
+                    window.clearInterval(interval);
+                    obj.maze.init();
+                    obj.layer.initLayer(obj.maze);
+                    obj.endPoint.initLayer(obj.maze);
+                    return;
                 };
                 obj.layer.moveLeft();
             }, 10)
@@ -103,7 +115,11 @@ function eventListener(obj) {
             interval = window.setInterval(function() {
                 if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
                     alert('到达终点')
-                    window.clearInterval(interval)
+                    window.clearInterval(interval);
+                    obj.maze.init();
+                    obj.layer.initLayer(obj.maze);
+                    obj.endPoint.initLayer(obj.maze);
+                    return;
                 };
                 obj.layer.moveRight();
             }, 10)
@@ -113,5 +129,5 @@ function eventListener(obj) {
 }
 
 function collisionDetection(xy, ab) {
-    return xy.x == ab.x && xy.y == ab.y;
+    return Math.abs(xy.x - ab.x) < 3 && Math.abs(xy.y - ab.y) < 3;
 }

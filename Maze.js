@@ -7,7 +7,18 @@ function Maze(config) {
     this.path = [];
     // 存储哪些墙需要消除
     this.wall = [];
-    this.init = function() {
+    this.init = function(obj) {
+        if (obj) {
+            for (var i in obj) {
+                this.config[i] = obj[i];
+            }
+        }
+        // 判断当前位置是否走过
+        this.book = [];
+        // 存储行进路径
+        this.path = [];
+        // 存储哪些墙需要消除
+        this.wall = [];
         this.dfs(0, 0);
         this.drawWaze();
     };
@@ -66,7 +77,8 @@ function Maze(config) {
         return steps;
     };
     this.drawWaze = function() {
-        // 获取canvas画布
+        console.log("生成迷宫")
+            // 获取canvas画布
         var canvas = document.getElementById(this.config.mazeId);
         // 设置画布高度
         canvas.height = this.config.canvasHeight;
@@ -80,6 +92,7 @@ function Maze(config) {
         // this.ctx.fillRect(0, 0, canvas.height, canvas.width);
         // 设置行进路径颜色
         this.ctx.fillStyle = this.config.roadColor;
+        this.ctx.clearRect(0, 0, this.config.canvasWidth, this.config.canvasHeight);
         // 绘制墙
         for (var j = 0; j < this.wall.length; j++) {
             this.ctx.fillRect(this.wall[j][0] * this.config.grid, this.wall[j][1] * this.config.grid, this.config.road, this.config.road)
