@@ -5,8 +5,8 @@ function EndPoint(id) {
     };
     this.img = document.getElementById(id);
     this.initLayer = function(maze) {
-        this.coordinates.x = maze.path[Math.floor(Math.random() * maze.path.length)][0] * maze.config['grid'];
-        this.coordinates.y = maze.path[Math.floor(Math.random() * maze.path.length)][1] * maze.config['grid'];
+        this.coordinates.x = maze.path[maze.path.length - 1][0] * maze.config['grid'];
+        this.coordinates.y = maze.path[maze.path.length - 1][1] * maze.config['grid'];
         this.img.style.backgroundImage = "url(./src/icon_item_10000012.png)";
         this.img.style.display = "block";
         this.img.style.position = "absolute";

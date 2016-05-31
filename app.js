@@ -1,79 +1,32 @@
 var LEVEL = [{
-    // canvas画布id
-    "mazeId": "maze",
-    // 迷宫宽度
-    "mazeWidth": 15,
-    // 迷宫高度
-    "mazeHeight": 10,
-    // 路与墙的总宽度
-    "grid": 38,
-    // 路的宽度
-    "road": 36,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-}, {
-    // canvas画布id
-    "mazeId": "maze",
-    // 迷宫宽度
-    "mazeWidth": 21,
-    // 迷宫高度
-    "mazeHeight": 12,
-    // 路与墙的总宽度
-    "grid": 38,
-    // 路的宽度
-    "road": 36,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-}, {
-    // canvas画布id
-    "mazeId": "maze",
-    // 迷宫宽度
-    "mazeWidth": 25,
-    // 迷宫高度
-    "mazeHeight": 15,
-    // 路与墙的总宽度
-    "grid": 38,
-    // 路的宽度
-    "road": 36,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-}, {
-    // canvas画布id
-    "mazeId": "maze",
-    // 迷宫宽度
-    "mazeWidth": 29,
-    // 迷宫高度
-    "mazeHeight": 18,
-    // 路与墙的总宽度
-    "grid": 38,
-    // 路的宽度
-    "road": 36,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-}, {
-    // canvas画布id
-    "mazeId": "maze",
-    // 迷宫宽度
-    "mazeWidth": 33,
-    // 迷宫高度
-    "mazeHeight": 20,
-    // 路与墙的总宽度
-    "grid": 38,
-    // 路的宽度
-    "road": 36,
-    // 迷宫墙的颜色
-    "wallColor": "black",
-    // 迷宫行进路线的颜色
-    "roadColor": "white"
-}]
+        // canvas画布id
+        "mazeId": "maze",
+        // 迷宫X轴格子数量
+        "mazeWidth": 15,
+        // 迷宫Y轴格子数量
+        "mazeHeight": 10,
+        // 路与墙的总宽度
+        "grid": 38,
+        // 路的宽度
+        "road": 36,
+        // 迷宫墙的颜色
+        "wallColor": "black",
+        // 迷宫行进路线的颜色
+        "roadColor": "white"
+    }, {
+        "mazeWidth": 21,
+        "mazeHeight": 12
+    }, {
+        "mazeWidth": 25,
+        "mazeHeight": 15
+    }, {
+        "mazeWidth": 29,
+        "mazeHeight": 18
+    }, {
+        "mazeWidth": 33,
+        "mazeHeight": 20
+    }],
+    nextLevel = 0;
 document.body.onload = game;
 
 function game() {
@@ -85,7 +38,7 @@ function game() {
 function loadResources() {
     console.log("正在加载游戏资源...");
     loadBg();
-    var maze = loadMaze(LEVEL[4]);
+    var maze = loadMaze(LEVEL[nextLevel++]);
     return {
         "maze": maze,
         "layer": loadLayer(maze),
@@ -95,8 +48,8 @@ function loadResources() {
 
 function loadBg() {
     var bgCanvas = document.getElementById('background');
-    bgCanvas.width = document.body.clientWidth; //document.width is obsolete
-    bgCanvas.height = document.body.clientHeight; //document.height is obsolete
+    bgCanvas.width = document.body.clientWidth;
+    bgCanvas.height = document.body.clientHeight;
     bgCtx = bgCanvas.getContext('2d');
     var bgImg = new Image();
     bgImg.src = "./src/bbg_garden_3.jpg";
@@ -130,56 +83,38 @@ function eventListener(obj) {
         window.clearInterval(interval)
         if (e.which === 38) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
-                    alert('到达终点')
-                    window.clearInterval(interval)
-                    obj.maze.init();
-                    obj.layer.initLayer(obj.maze);
-                    obj.endPoint.initLayer(obj.maze);
-                    return;
-                };
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                    return newLevel();
                 obj.layer.moveUp();
             }, 10)
         }
         if (e.which === 40) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
-                    alert('到达终点')
-                    window.clearInterval(interval);
-                    obj.maze.init();
-                    obj.layer.initLayer(obj.maze);
-                    obj.endPoint.initLayer(obj.maze);
-                    return;
-                };
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                    return newLevel();
                 obj.layer.moveDown();
             }, 10)
         }
         if (e.which === 37) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
-                    alert('到达终点')
-                    window.clearInterval(interval);
-                    obj.maze.init();
-                    obj.layer.initLayer(obj.maze);
-                    obj.endPoint.initLayer(obj.maze);
-                    return;
-                };
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                    return newLevel();
                 obj.layer.moveLeft();
             }, 10)
         }
         if (e.which === 39) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates)) {
-                    alert('到达终点')
-                    window.clearInterval(interval);
-                    obj.maze.init();
-                    obj.layer.initLayer(obj.maze);
-                    obj.endPoint.initLayer(obj.maze);
-                    return;
-                };
+                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                    return newLevel();
                 obj.layer.moveRight();
             }, 10)
+        }
 
+        function newLevel() {
+            window.clearInterval(interval);
+            obj.maze.init(LEVEL[nextLevel++]);
+            obj.layer.initLayer(obj.maze);
+            obj.endPoint.initLayer(obj.maze);
         }
     }
 }
