@@ -26,6 +26,8 @@ var LEVEL = [{
         "mazeWidth": 33,
         "mazeHeight": 20
     }],
+    endImgUrl = ['icon_maze_cave_small.png', 'icon_maze_time_small.png', 'icon_maze_angel_small.png', 'icon_maze_fort_small.png'],
+    bgImgUrl = ['bbg_forest_3.jpg', 'bbg_garden_3.jpg', 'bbg_snowfield_3.jpg', 'bbg_jungle_3.jpg', 'bbg_desert_3.jpg', 'bbg_mushroom_3.jpg', 'bbg_seabeach_2.jpg', 'bbg_seabeach_3.jpg'],
     nextLevel = 0;
 document.body.onload = game;
 
@@ -37,9 +39,10 @@ function game() {
 
 function loadResources() {
     console.log("正在加载游戏资源...");
-    loadBg();
-    var maze = loadMaze(LEVEL[nextLevel++]);
+    var bgCtx = loadBg(),
+        maze = loadMaze(LEVEL[nextLevel++]);
     return {
+        "bgCtx": bgCtx,
         "maze": maze,
         "layer": loadLayer(maze),
         "endPoint": generateEndPoint(maze)
@@ -52,11 +55,12 @@ function loadBg() {
     bgCanvas.height = document.body.clientHeight;
     bgCtx = bgCanvas.getContext('2d');
     var bgImg = new Image();
-    bgImg.src = "./src/bbg_garden_3.jpg";
+    bgImg.src = "./src/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
     bgImg.onload = function() {
         bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
-        console.log("背景资源加载结束...")
+        console.log("背景资源加载结束...");
     }
+    return bgCtx;
 }
 
 function loadMaze(setting) {
@@ -73,7 +77,7 @@ function loadLayer(maze) {
 
 function generateEndPoint(maze) {
     var endPoint = new EndPoint('endPoint');
-    endPoint.initLayer(maze);
+    endPoint.initLayer(maze, endImgUrl[nextLevel - 1]);
     return endPoint;
 }
 
@@ -112,13 +116,20 @@ function eventListener(obj) {
 
         function newLevel() {
             window.clearInterval(interval);
-            obj.maze.init(LEVEL[nextLevel++]);
-            obj.layer.initLayer(obj.maze);
-            obj.endPoint.initLayer(obj.maze);
+            var bgImg = new Image();
+            obj.bgCtx.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
+            bgImg.src = "./src/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
+            bgImg.onload = function() {
+                obj.bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, document.body.clientWidth, document.body.clientHeight);
+                obj.maze.init(LEVEL[nextLevel++]);
+                obj.layer.initLayer(obj.maze);
+                obj.endPoint.initLayer(obj.maze, endImgUrl[nextLevel]);
+            }
         }
-    }
-}
 
-function collisionDetection(xy, ab) {
-    return Math.abs(xy.x - ab.x) < 3 && Math.abs(xy.y - ab.y) < 3;
+        function collisionDetection(xy, ab) {
+            return Math.abs(xy.x - ab.x) < 20 && Math.abs(xy.y - ab.y) < 20;
+        }
+
+    }
 }
