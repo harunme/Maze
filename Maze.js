@@ -19,8 +19,14 @@ function Maze(config) {
         this.path = [];
         // 存储哪些墙需要消除
         this.wall = [];
+        this.updateCssStyle();
         this.dfs(0, 0);
         this.drawWaze();
+    };
+    this.updateCssStyle = function() {
+        var mazeDiv = document.getElementById('mazeDiv');
+        mazeDiv.style.width = this.config.mazeWidth * this.config.grid + 'px';
+        mazeDiv.style.height = this.config.mazeHeight * this.config.grid + 'px';
     };
     // 深度优先算法
     this.dfs = function(x, y) {
@@ -81,9 +87,9 @@ function Maze(config) {
             // 获取canvas画布
         var canvas = document.getElementById(this.config.mazeId);
         // 设置画布高度
-        canvas.height = this.config.canvasHeight;
+        canvas.height = this.config.mazeHeight * this.config.grid;
         // 设置画布宽度
-        canvas.width = this.config.canvasWidth;
+        canvas.width = this.config.mazeWidth * this.config.grid;
         // 获取画布上下文对象
         this.ctx = canvas.getContext('2d');
         // 设置迷宫墙的颜色
@@ -92,7 +98,7 @@ function Maze(config) {
         // this.ctx.fillRect(0, 0, canvas.height, canvas.width);
         // 设置行进路径颜色
         this.ctx.fillStyle = this.config.roadColor;
-        this.ctx.clearRect(0, 0, this.config.canvasWidth, this.config.canvasHeight);
+        this.ctx.clearRect(0, 0, this.config.mazeWidth * this.config.grid, this.config.mazeHeight * this.config.grid);
         // 绘制墙
         for (var j = 0; j < this.wall.length; j++) {
             this.ctx.fillRect(this.wall[j][0] * this.config.grid, this.wall[j][1] * this.config.grid, this.config.road, this.config.road)

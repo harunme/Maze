@@ -1,3 +1,79 @@
+var LEVEL = [{
+    // canvas画布id
+    "mazeId": "maze",
+    // 迷宫宽度
+    "mazeWidth": 15,
+    // 迷宫高度
+    "mazeHeight": 10,
+    // 路与墙的总宽度
+    "grid": 38,
+    // 路的宽度
+    "road": 36,
+    // 迷宫墙的颜色
+    "wallColor": "black",
+    // 迷宫行进路线的颜色
+    "roadColor": "white"
+}, {
+    // canvas画布id
+    "mazeId": "maze",
+    // 迷宫宽度
+    "mazeWidth": 21,
+    // 迷宫高度
+    "mazeHeight": 12,
+    // 路与墙的总宽度
+    "grid": 38,
+    // 路的宽度
+    "road": 36,
+    // 迷宫墙的颜色
+    "wallColor": "black",
+    // 迷宫行进路线的颜色
+    "roadColor": "white"
+}, {
+    // canvas画布id
+    "mazeId": "maze",
+    // 迷宫宽度
+    "mazeWidth": 25,
+    // 迷宫高度
+    "mazeHeight": 15,
+    // 路与墙的总宽度
+    "grid": 38,
+    // 路的宽度
+    "road": 36,
+    // 迷宫墙的颜色
+    "wallColor": "black",
+    // 迷宫行进路线的颜色
+    "roadColor": "white"
+}, {
+    // canvas画布id
+    "mazeId": "maze",
+    // 迷宫宽度
+    "mazeWidth": 29,
+    // 迷宫高度
+    "mazeHeight": 18,
+    // 路与墙的总宽度
+    "grid": 38,
+    // 路的宽度
+    "road": 36,
+    // 迷宫墙的颜色
+    "wallColor": "black",
+    // 迷宫行进路线的颜色
+    "roadColor": "white"
+}, {
+    // canvas画布id
+    "mazeId": "maze",
+    // 迷宫宽度
+    "mazeWidth": 33,
+    // 迷宫高度
+    "mazeHeight": 20,
+    // 路与墙的总宽度
+    "grid": 38,
+    // 路的宽度
+    "road": 36,
+    // 迷宫墙的颜色
+    "wallColor": "black",
+    // 迷宫行进路线的颜色
+    "roadColor": "white"
+}]
 document.body.onload = game;
 
 function game() {
@@ -9,27 +85,7 @@ function game() {
 function loadResources() {
     console.log("正在加载游戏资源...");
     loadBg();
-    var mazeSetting = {
-        // canvas画布id
-        "mazeId": "maze",
-        // canvas画布高度
-        "canvasHeight": 600,
-        // canvas画布宽度
-        "canvasWidth": 1240,
-        // 迷宫宽度
-        "mazeWidth": 31,
-        // 迷宫高度
-        "mazeHeight": 20,
-        // 路与墙的总宽度
-        "grid": 30,
-        // 路的宽度
-        "road": 28,
-        // 迷宫墙的颜色
-        "wallColor": "black",
-        // 迷宫行进路线的颜色
-        "roadColor": "white"
-    };
-    var maze = loadMaze(mazeSetting);
+    var maze = loadMaze(LEVEL[4]);
     return {
         "maze": maze,
         "layer": loadLayer(maze),
