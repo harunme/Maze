@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%; }
+
+canvas {
+  display: block; }
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; }
+
+.maze {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 100;
+  padding: 0;
+  margin: auto; }
+
+#timing {
+  position: absolute;
+  bottom: 30px;
+  right: 10px;
+  z-index: 100;
+  width: 120px;
+  height: 50px; }
+
+.timing {
+  height: 50px;
+  display: block;
+  width: 30px;
+  position: absolute;
+  border: 2px solid red; }
+
+#timing #hundredPlace {
+  left: 0;
+  background-image: url(./src/digital_label_baozang.png); }
+
+#timing #tenPlace {
+  left: 40px;
+  background-image: url(./src/digital_label_baozang.png); }
+
+#timing #unitPlace {
+  left: 80px;
+  background-image: url(./src/digital_label_baozang.png); }
+
+/*# sourceMappingURL=style.css.map */

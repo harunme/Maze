@@ -33,8 +33,8 @@ document.body.onload = game;
 
 function game() {
     console.log('游戏开始...');
-    var gameObj = loadResources();
-    eventListener(gameObj);
+    var obj = loadResources()
+    start(obj);
 }
 
 function loadResources() {
@@ -59,7 +59,15 @@ function loadBg() {
     bgImg.onload = function() {
         bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
         console.log("背景资源加载结束...");
+        window.onresize = function() {
+            console.log('hi')
+            bgCanvas.width = document.body.clientWidth;
+            bgCanvas.height = document.body.clientHeight;
+            bgCtx.clearRect(0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
+            bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
+        }
     }
+
     return bgCtx;
 }
 
@@ -70,9 +78,14 @@ function loadMaze(setting) {
 }
 
 function loadLayer(maze) {
-    var layer = new Layer('layerImg');
-    layer.initLayer(maze);
-    return layer;
+    var hero = new Layer('layerImg'),
+        other = new Layer('otherImg');
+    hero.initLayer(maze, '10000004.png');
+    other.initLayer(maze, '13000007.png', 0, 0);
+    return {
+        "hero": hero,
+        "other": other
+    };
 }
 
 function generateEndPoint(maze) {
@@ -81,36 +94,40 @@ function generateEndPoint(maze) {
     return endPoint;
 }
 
-function eventListener(obj) {
+function start(obj) {
     var interval;
+    console.log(obj.maze.path);
+    console.log(obj.maze.book[0 * obj.maze.config.mazeWidth + 0])
+    console.log(obj.layer['other'].pathPos)
     document.onkeydown = function(e) {
         window.clearInterval(interval)
+
         if (e.which === 38) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                if (collisionDetection(obj.layer['hero'].coordinates, obj.endPoint.coordinates))
                     return newLevel();
-                obj.layer.moveUp();
+                obj.layer['hero'].moveUp();
             }, 10)
         }
         if (e.which === 40) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                if (collisionDetection(obj.layer['hero'].coordinates, obj.endPoint.coordinates))
                     return newLevel();
-                obj.layer.moveDown();
+                obj.layer['hero'].moveDown();
             }, 10)
         }
         if (e.which === 37) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                if (collisionDetection(obj.layer['hero'].coordinates, obj.endPoint.coordinates))
                     return newLevel();
-                obj.layer.moveLeft();
+                obj.layer['hero'].moveLeft();
             }, 10)
         }
         if (e.which === 39) {
             interval = window.setInterval(function() {
-                if (collisionDetection(obj.layer.coordinates, obj.endPoint.coordinates))
+                if (collisionDetection(obj.layer['hero'].coordinates, obj.endPoint.coordinates))
                     return newLevel();
-                obj.layer.moveRight();
+                obj.layer['hero'].moveRight();
             }, 10)
         }
 
@@ -122,7 +139,7 @@ function eventListener(obj) {
             bgImg.onload = function() {
                 obj.bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, document.body.clientWidth, document.body.clientHeight);
                 obj.maze.init(LEVEL[nextLevel++]);
-                obj.layer.initLayer(obj.maze);
+                obj.layer['hero'].initLayer(obj.maze, '10000004.png');
                 obj.endPoint.initLayer(obj.maze, endImgUrl[nextLevel]);
             }
         }
@@ -131,5 +148,5 @@ function eventListener(obj) {
             return Math.abs(xy.x - ab.x) < 20 && Math.abs(xy.y - ab.y) < 20;
         }
 
-    }
+    };
 }

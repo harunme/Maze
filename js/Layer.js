@@ -4,10 +4,11 @@ function Layer(id) {
         y: null
     };
     this.img = document.getElementById(id);
-    this.initLayer = function(maze) {
-        this.coordinates.x = maze.path[Math.floor(Math.random() * maze.path.length)][0] * maze.config['grid'] + 6;
-        this.coordinates.y = maze.path[Math.floor(Math.random() * maze.path.length)][1] * maze.config['grid'] + 6;
-        this.img.style.backgroundImage = "url(./src/10000004.png)";
+    this.initLayer = function(maze, url, x, y) {
+        var random = Math.floor(Math.random() * maze.path.length);
+        this.coordinates.x = x == undefined ? maze.path[random][0] * maze.config['grid'] + 6 : x + 6;
+        this.coordinates.y = x == undefined ? maze.path[random][1] * maze.config['grid'] + 6 : y + 6;
+        this.img.style.backgroundImage = "url(./src/" + url + ")";
         this.img.style.display = "block";
         this.img.style.position = "absolute";
         // this.img.style.border = "1px solid";
@@ -16,8 +17,8 @@ function Layer(id) {
         this.img.style.backgroundSize = "70px 70px";
         this.img.style.left = this.coordinates.x + 'px';
         this.img.style.top = this.coordinates.y + 'px';
-        console.log(this.img)
         this.ctx = maze.ctx;
+        this.pathPos = random;
     };
     this.moveUp = function() {
         if (!isCollsion(this.ctx, this.img, this.coordinates.x, this.coordinates.y - 1)) {
