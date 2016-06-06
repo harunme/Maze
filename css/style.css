@@ -28,8 +28,10 @@ canvas {
   margin: auto; }
 
 #timing {
+  color: white;
+  font-size: 14px;
   position: absolute;
-  bottom: 30px;
+  bottom: 70px;
   right: 10px;
   z-index: 100;
   width: 120px;
@@ -39,19 +41,18 @@ canvas {
   height: 50px;
   display: block;
   width: 30px;
-  position: absolute;
-  border: 2px solid red; }
+  position: absolute; }
 
 #timing #hundredPlace {
   left: 0;
-  background-image: url(./src/digital_label_baozang.png); }
+  background-image: url(../src/digital_label_baozang.png); }
 
 #timing #tenPlace {
   left: 40px;
-  background-image: url(./src/digital_label_baozang.png); }
+  background-image: url(../src/digital_label_baozang.png); }
 
 #timing #unitPlace {
   left: 80px;
-  background-image: url(./src/digital_label_baozang.png); }
+  background-image: url(../src/digital_label_baozang.png); }
 
 /*# sourceMappingURL=style.css.map */

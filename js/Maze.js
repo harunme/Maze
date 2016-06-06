@@ -83,8 +83,7 @@ function Maze(config) {
         return steps;
     };
     this.drawWaze = function() {
-        console.log("生成迷宫")
-            // 获取canvas画布
+        // 获取canvas画布
         var canvas = document.getElementById(this.config.mazeId);
         // 设置画布高度
         canvas.height = this.config.mazeHeight * this.config.grid;

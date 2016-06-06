@@ -34,26 +34,22 @@ document.body.onload = game;
 function game() {
     console.log('游戏开始...');
     var obj = loadResources()
-        // start(obj);
+    start(obj);
 }
 
 function loadResources() {
     console.log("正在加载游戏资源...");
-    var bgCtx = loadBg(function() {
-        var maze = new Maze(LEVEL[nextLevel++]);
-        maze.init();
-        return maze;
-    });
-    // maze = loadMaze(LEVEL[nextLevel++]);
-    // return {
-    //     "bgCtx": bgCtx,
-    //     "maze": maze,
-    //     "layer": loadLayer(maze),
-    //     "endPoint": generateEndPoint(maze)
-    // }
+    var bgCtx = loadBg(),
+        maze = loadMaze(LEVEL[nextLevel++]);
+    return {
+        "bgCtx": bgCtx,
+        "maze": maze,
+        "layer": loadLayer(maze),
+        "endPoint": generateEndPoint(maze)
+    }
 }
 
-function loadBg(func) {
+function loadBg() {
     var bgCanvas = document.getElementById('background');
     bgCanvas.width = document.body.clientWidth;
     bgCanvas.height = document.body.clientHeight;
@@ -63,8 +59,8 @@ function loadBg(func) {
     bgImg.onload = function() {
         bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
         console.log("背景资源加载结束...");
-        func();
         window.onresize = function() {
+            console.log('hi')
             bgCanvas.width = document.body.clientWidth;
             bgCanvas.height = document.body.clientHeight;
             bgCtx.clearRect(0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
@@ -153,5 +149,4 @@ function start(obj) {
         }
 
     };
-
 }

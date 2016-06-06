@@ -73,6 +73,9 @@ function Game() {
     this.start = function(obj) {
         var interval,
             self = this;
+        document.ontouchmove = function(e) {
+            e.preventDefault();
+        };
         document.onkeydown = function(e) {
             window.clearInterval(interval)
             if (e.which === 38) {

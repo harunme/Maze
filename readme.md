@@ -24,4 +24,11 @@ gulp
 5、主角与迷宫的碰撞检测
 6、主角与终点或宝物的碰撞检测
 
+maze类
+属性
+config
+
+方法
+
+
 sass --watch style.scss:style.css
