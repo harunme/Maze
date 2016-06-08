@@ -33,17 +33,17 @@ document.body.onload = game;
 
 function game() {
     var loadingImg = document.getElementById('loadingImg');
-    loadingImg.src = 'src/Loading30.png';
+    loadingImg.src = 'img/Loading30.png';
     var bgCanvas = document.getElementById('background');
     bgCanvas.width = document.body.clientWidth;
     bgCanvas.height = document.body.clientHeight;
     bgCtx = bgCanvas.getContext('2d');
     var bgImg = new Image();
-    bgImg.src = "./src/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
+    bgImg.src = "./img/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
     bgImg.onload = function() {
-        loadingImg.src = 'src/Loading50.png';
+        loadingImg.src = 'img/Loading50.png';
         bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, bgCanvas.width, bgCanvas.height);
-        loadingImg.src = 'src/Loading80.png';
+        loadingImg.src = 'img/Loading80.png';
         var maze = loadMaze();
         var layer = loadLayer(maze);
         start({
@@ -52,7 +52,7 @@ function game() {
             "layer": layer,
             "endPoint": generateEndPoint(maze)
         })
-        loadingImg.src = 'src/Loading100.png';
+        loadingImg.src = 'img/Loading100.png';
         window.onresize = function() {
             bgCanvas.width = document.body.clientWidth;
             bgCanvas.height = document.body.clientHeight;
@@ -126,7 +126,7 @@ function start(obj) {
             window.clearInterval(interval);
             var bgImg = new Image();
             obj.bgCtx.clearRect(0, 0, document.body.clientWidth, document.body.clientHeight);
-            bgImg.src = "./src/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
+            bgImg.src = "./img/" + bgImgUrl[Math.floor(Math.random() * bgImgUrl.length)];
             bgImg.onload = function() {
                 obj.bgCtx.drawImage(bgImg, 0, 0, bgImg.width, bgImg.height, 0, 0, document.body.clientWidth, document.body.clientHeight);
                 obj.maze.init(LEVEL[nextLevel++]);

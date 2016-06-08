@@ -7,7 +7,7 @@ function EndPoint(id) {
     this.initLayer = function(maze, url) {
         this.coordinates.x = maze.path[maze.path.length - 1][0] * maze.config['grid'];
         this.coordinates.y = maze.path[maze.path.length - 1][1] * maze.config['grid'];
-        this.img.style.backgroundImage = url === "undefined" ? "url(./src/icon_item_10000012.png)" : "url(./src/" + url + ")";
+        this.img.style.backgroundImage = url === "undefined" ? "url(./img/icon_item_10000012.png)" : "url(./img/" + url + ")";
         this.img.style.display = "block";
         this.img.style.position = "absolute";
         this.img.style.width = "30px";

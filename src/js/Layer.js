@@ -8,7 +8,7 @@ function Layer(id) {
         var random = Math.floor(Math.random() * maze.path.length);
         this.coordinates.x = x == undefined ? maze.path[random][0] * maze.config['grid'] + 6 : x + 6;
         this.coordinates.y = x == undefined ? maze.path[random][1] * maze.config['grid'] + 6 : y + 6;
-        this.img.style.backgroundImage = "url(./src/" + url + ")";
+        this.img.style.backgroundImage = "url(./img/" + url + ")";
         this.img.style.display = "block";
         this.img.style.position = "absolute";
         this.img.style.width = "20px";
