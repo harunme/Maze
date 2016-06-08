@@ -87,7 +87,7 @@ function generateEndPoint(maze) {
 
 function start(obj) {
     setTimeout(function() {
-        document.getElementById('loading').style = "visibility: hidden";
+        document.getElementById('loading').style.display = "none";
     }, 800)
     var interval;
     document.onkeydown = function(e) {
