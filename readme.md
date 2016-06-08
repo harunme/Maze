@@ -1,9 +1,8 @@
-# MAZING...
+# [MAZING...](yowangbin.com/maze/index.html)
 ###### Author:wangbin
 ###### E-mail:yowangbin@gmail.com
 MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何生成的，于是有了深度优先算法，我又不满足于仅仅知道迷宫的生成算法，然后开始考虑如何绘制迷宫，于是有了canvas绘制迷宫，最后添油加醋，完成了这款简单的迷宫游戏
-[![](/img/zhihu.png "我的知乎，欢迎关注")][zhihu]
-[![](http://7xpx89.com1.z0.glb.clouddn.com/mazing.png "项目展示，欢迎Star")][yowangbin.com/maze/index.html]
+![](http://7xpx89.com1.z0.glb.clouddn.com/mazing.png "项目展示，欢迎Star")
 ## 技术难点：
 1. 深度优先算法    
 2. 迷宫的绘制    
