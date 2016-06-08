@@ -1,9 +1,9 @@
 ## MAZING...
-
 MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何生成的，于是有了深度优先算法，我又不满足于仅仅知道迷宫的生成算法，然后开始考虑如何绘制迷宫，于是有了canvas绘制迷宫，最后添油加醋，完成了这款简单的迷宫游戏
+
 ------
-###　　　　　　　　　　　　Author:wangbin
-###　　　　　　　　　 E-mail:yowangbin@gmail.com
+####　　　　　　　　　　　　Author:wangbin
+####　　　　　　　　　 E-mail:yowangbin@gmail.com
 ------
 
 
@@ -16,7 +16,6 @@ MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何�
 6. 主角与终点或宝物的碰撞检测    
 
 ### 项目依赖安装
-------
 若非进行开发，可忽略本步骤，直接运行根目录下index.html即可
 ##### 安装gulp
     npm install gulp -g
@@ -32,7 +31,6 @@ MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何�
     打开CDM，输入gulp，回车
 
 ### 目录结构
-------
 ![目录结构](http://7xpx89.com1.z0.glb.clouddn.com/2016-06-08_125516.png "目录结构")  
 * dist文件夹 : 存放压缩后的*.min.js、*.min.css
 * img文件夹  : 存放图片资源
@@ -44,7 +42,6 @@ MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何�
 * index.html : 主页面
 
 ### API
-------
 
 
 
