@@ -1,7 +1,7 @@
 # [MAZING...](http://yowangbin.com/maze/index.html)
 ###### Author:wangbin
 ###### E-mail:yowangbin@gmail.com
-MAZING项目起源于一款HTML迷宫游戏，这款游戏是用既有的迷宫图片作为游戏背景，只能通过更换图片的方式生成迷宫，会不会有更好的解决方案？   
+MAZING项目起源于一款HTML迷宫游戏，这款游戏是用既有的迷宫图片作为游戏背景，只能通过更换图片的方式生成迷宫，我在想会不会有更好的解决方案？   
 所以，我开始考虑...        
 如何用算法自动生成迷宫...       
 如何绘制迷宫...       
@@ -44,11 +44,36 @@ MAZING项目起源于一款HTML迷宫游戏，这款游戏是用既有的迷宫�
 * index.html : 主页面
 
 ## API
+#### 构造函数：Maze(config)
+###### 参数config
+```
+{
+        // canvas画布id
+        "mazeId": "maze",
+        // 迷宫X轴格子数量
+        "mazeWidth": 15,
+        // 迷宫Y轴格子数量
+        "mazeHeight": 10,
+        // 路与墙的总宽度
+        "grid": 38,
+        // 路的宽度
+        "road": 36,
+        // 迷宫墙的颜色
+        "wallColor": "black",
+        // 迷宫行进路线的颜色
+        "roadColor": "white"
+    }
+```
+###### 属性
+| 名称        | 类型   |  描述  |
+| --------   | -----:  | :----:  |
+|   config    | Object |  迷宫的基本配置，详见参数    |
+| path        | Array  |  生成迷宫时算法的行进路径  |
+|wall|Array|存储哪些墙需要消除 |
+###### 方法
+| 名称        | 参数   |  描述  |返回值 |
+| --------   | -----:  | :----:  |:----:  |
+|   init    | config |根据config生成对应难度的迷宫 |none|
 
+## 未完待续...
 
-
-
-
-
-
-sass --watch style.scss:style.css
