@@ -4,7 +4,7 @@ MAZING项目起源于对偶然看到一款迷宫游戏，好奇迷宫是如何�
 ****
 ###　　　　　　　　　　　　Author:wangbin
 ###　　　　　　　　　 E-mail:yowangbin@gmail.com
-===========================
+****
 
 
 ## 技术难点：
