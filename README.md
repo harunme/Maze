@@ -8,7 +8,7 @@ MAZING项目起源于一款HTML迷宫游戏，这款游戏是用既有的迷宫�
 如何实现碰撞检测...       
 ...     
 于是，有了这款简单的游戏！
-![](http://7xpx89.com1.z0.glb.clouddn.com/maze_1.png"欢迎Star")
+![](http://7xpx89.com1.z0.glb.clouddn.com/maze_1.png)
 ## 技术难点：
 1. 深度优先算法    
 2. 迷宫的绘制    
